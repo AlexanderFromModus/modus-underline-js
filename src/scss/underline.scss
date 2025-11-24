@@ -1,0 +1,101 @@
+// Mozart UI - Animated SVG Underline Styles
+
+:root {
+  --underline-speed: 0.24s;
+  --underline-easing: ease-in-out;
+  --underline-offset: 12px;
+}
+
+/* SVG Symbol Library - Hidden */
+.symbol-library {
+  display: none;
+}
+
+/* Underline SVG Container */
+.underline-svg {
+  --path-distance: var(--underline-offset, 12px);
+  position: absolute;
+  bottom: var(--path-distance);
+  left: 0;
+  width: 100%;
+  height: 12px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.underline-svg svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.underline-svg path {
+  stroke: currentColor;
+  stroke-width: 10;
+  stroke-linecap: round;
+  fill: none;
+  --path-length: 1000;
+  stroke-dasharray: var(--path-length);
+  stroke-dashoffset: var(--path-length);
+}
+
+/* Draw-in animation */
+@keyframes drawIn {
+  0% {
+    stroke-dashoffset: var(--path-length);
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Draw-out animation */
+@keyframes drawOut {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: calc(var(--path-length) * -1);
+  }
+}
+
+/* Elements with underline functionality */
+[data-draw-line] {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Show underline when it has content (for scroll/click/focus triggers) */
+.underline-svg:not(:empty) {
+  opacity: 1;
+}
+
+/* Hover Animation States */
+[data-draw-line]:hover .underline-svg {
+  opacity: 1;
+}
+
+[data-draw-line]:hover .underline-svg path {
+  animation: drawIn calc(var(--underline-speed) * 2) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Focus states */
+[data-draw-line]:focus .underline-svg {
+  opacity: 1;
+}
+
+[data-draw-line]:focus .underline-svg path {
+  animation: drawIn calc(var(--underline-speed) * 2) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Loaded/active underline states */
+[data-draw-line].underline-loading .underline-svg,
+[data-draw-line] .underline-svg:not(:empty) {
+  opacity: 1;
+}
+
+[data-draw-line].underline-loading .underline-svg path {
+  animation: drawIn calc(var(--underline-speed) * 2) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+

@@ -1,0 +1,10 @@
+# Netlify configuration for demo page
+[build]
+  publish = "demo"
+  command = "npm run build:demo"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

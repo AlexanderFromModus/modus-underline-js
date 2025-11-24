@@ -1,0 +1,46 @@
+{
+  "name": "modus-underline-js",
+  "version": "1.0.1",
+  "description": "Animated SVG underline library with multiple trigger options (hover, scroll, click, focus, load)",
+  "main": "dist/underline.js",
+  "style": "dist/underline.css",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "sass src/scss/underline.scss dist/underline.css --style compressed",
+    "build:js": "node scripts/build.js",
+    "build:demo": "sass assets/scss/demo.scss assets/css/demo.css --style expanded",
+    "prepare:demo": "npm run build && npm run build:demo && node scripts/prepare-demo.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "underline",
+    "animation",
+    "svg",
+    "hover",
+    "scroll",
+    "interactive",
+    "typography",
+    "ui"
+  ],
+  "author": {
+    "name": "Alexander Staneke",
+    "email": "alexander@modus-digital.com",
+    "url": "https://modus-digital.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "sass": "^1.94.2"
+  },
+  "peerDependencies": {}
+}

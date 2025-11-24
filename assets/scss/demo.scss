@@ -1,0 +1,405 @@
+// Demo Page Styles
+// Styles specific to the demo/index.html page
+
+@use 'variables' as *;
+
+// Prism theme overrides
+.code-example pre[class*="language-"] {
+    background: $color-black-40;
+    border: 1px solid $color-primary-20;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 0;
+    overflow-x: auto;
+}
+
+.code-example pre[class*="language-"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $color-primary, transparent);
+    border-radius: 8px 8px 0 0;
+}
+
+.code-example code[class*="language-"] {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+// Demo page root variables
+:root {
+    --underline-speed: 0.24s;
+    --underline-offset: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Besley', serif;
+    background: linear-gradient(135deg, $color-dark 0%, $color-dark-secondary 100%);
+    color: $color-white;
+    line-height: 1.8;
+    overflow-x: hidden;
+    padding-top: 70px;
+}
+
+// Hero Section
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 80px 0;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: $color-primary-10;
+    border: 1px solid $color-primary-30;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $color-primary;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: $color-white;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: $color-white-07;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-text {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    line-height: 2;
+    color: $color-white-09;
+}
+
+// Sections
+.section {
+    padding: 120px 0;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: $color-primary-60;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.section-title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: $color-white;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: $color-white-60;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.demo-text {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    line-height: 2.2;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.demo-text-left {
+    text-align: left;
+}
+
+.spacer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white-30;
+    font-size: 1.2rem;
+}
+
+// Demo-specific underline styling
+[data-draw-line] {
+    color: $color-primary;
+    font-weight: 600;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: $color-primary-light;
+    }
+}
+
+// Feature Grid
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.feature-card {
+    padding: 40px;
+    background: $color-white-03;
+    border: 1px solid $color-white-10;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: $color-white-05;
+        border-color: $color-primary-30;
+        transform: translateY(-5px);
+    }
+}
+
+.feature-card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: $color-primary;
+}
+
+.feature-card-text {
+    font-size: 1rem;
+    color: $color-white-07;
+    line-height: 1.8;
+}
+
+// Code Examples
+.code-example {
+    margin: 20px 0;
+    position: relative;
+
+    pre {
+        padding-top: 50px !important;
+    }
+}
+
+.code-example-wrapper {
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: $color-primary-10;
+    border: 1px solid $color-primary-30;
+    color: $color-primary;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Besley', serif;
+    font-weight: 600;
+    z-index: 10;
+
+    &:hover {
+        background: $color-primary-20;
+        border-color: $color-primary-50;
+        transform: translateY(-2px);
+    }
+
+    &.copied {
+        background: $color-primary-30;
+        border-color: $color-primary;
+
+        &::after {
+            content: ' ✓ Copied!';
+        }
+    }
+}
+
+.example-demo {
+    background: $color-white-03;
+    border: 1px solid $color-white-10;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.example-demo-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $color-primary-60;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+// Footer
+.footer {
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid $color-white-10;
+    color: $color-white-50;
+}
+
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+// Navigation
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba($color-dark, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid $color-white-10;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+
+    &.scrolled {
+        background: rgba($color-dark, 0.98);
+        box-shadow: 0 2px 20px rgba($color-black, 0.3);
+    }
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $color-primary;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    align-items: center;
+
+    a {
+        color: $color-white-07;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+
+        &:hover {
+            color: $color-primary;
+        }
+
+        &.active {
+            color: $color-primary;
+        }
+    }
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid $color-white-20;
+    color: $color-white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+// Smooth scroll
+html {
+    scroll-behavior: smooth;
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .container-custom {
+        padding: 0 20px;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba($color-dark, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid $color-white-10;
+
+        &.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+}
+
