@@ -4,9 +4,7 @@ A lightweight, dependency-free library for creating beautiful animated SVG under
 
 ## Demo
 
-[View Live Demo →](https://YOUR_USERNAME.github.io/modus-underline-js/)
-
-*Replace `YOUR_USERNAME` with your GitHub username after deployment*
+[View Live Demo →](https://alexanderfrommodus.github.io/modus-underline-js/)
 
 ## Features
 
