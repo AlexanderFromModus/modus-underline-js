@@ -19,29 +19,119 @@ A lightweight, dependency-free library for creating beautiful animated SVG under
 
 ## Installation
 
+### Package Managers
+
+Install via npm:
 ```bash
 npm install modus-underline-js
 ```
 
-## Quick Start
-
-### 1. Include CSS and JavaScript
-
-**Via CDN or local files:**
-```html
-<link rel="stylesheet" href="node_modules/modus-underline-js/dist/underline.css">
-<script src="node_modules/modus-underline-js/dist/underline.js"></script>
+Or via yarn:
+```bash
+yarn add modus-underline-js
 ```
 
-**Via ES Modules:**
+Or via pnpm:
+```bash
+pnpm add modus-underline-js
+```
+
+### CDN (No Build Step)
+
+Include directly from a CDN (unpkg or jsDelivr):
+
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/modus-underline-js@latest/dist/underline.css">
+
+<!-- JavaScript -->
+<script src="https://unpkg.com/modus-underline-js@latest/dist/underline.js"></script>
+```
+
+Or using jsDelivr:
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modus-underline-js@latest/dist/underline.css">
+
+<!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/modus-underline-js@latest/dist/underline.js"></script>
+```
+
+## Requirements
+
+- Modern browser with ES6+ support
+- CSS Custom Properties (CSS Variables) support
+- Intersection Observer API (for scroll triggers)
+- Fetch API (for loading SVG symbols - though embedded symbols are used by default)
+
+All modern browsers (Chrome, Firefox, Safari, Edge) are supported.
+
+## Quick Start
+
+### Method 1: Script Tag (Simple HTML)
+
+Include the CSS and JavaScript files in your HTML:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="node_modules/modus-underline-js/dist/underline.css">
+</head>
+<body>
+  <h1>
+    True <b data-draw-line>creativity</b> thrives when 
+    <b data-draw-line>expression</b> guides the vision.
+  </h1>
+  
+  <script src="node_modules/modus-underline-js/dist/underline.js"></script>
+</body>
+</html>
+```
+
+The library auto-initializes when loaded as a script tag.
+
+### Method 2: ES Modules
+
+Import in your JavaScript:
+
 ```javascript
 import { initRandomUnderlines } from 'modus-underline-js';
 import 'modus-underline-js/dist/underline.css';
+
+// Initialize (optional - auto-initializes if script tag is used)
+initRandomUnderlines();
 ```
 
-### 2. Markup Your Text
+### Method 3: Bundlers (Webpack, Vite, Rollup, etc.)
 
-**That's it!** The SVG symbols are automatically injected into the DOM. No manual setup required.
+Works with any modern bundler:
+
+```javascript
+// In your main JS file
+import { initRandomUnderlines } from 'modus-underline-js';
+import 'modus-underline-js/dist/underline.css';
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initRandomUnderlines();
+});
+```
+
+### Method 4: TypeScript
+
+TypeScript definitions are included:
+
+```typescript
+import { initRandomUnderlines } from 'modus-underline-js';
+import 'modus-underline-js/dist/underline.css';
+
+initRandomUnderlines();
+```
+
+### Usage
+
+Add the `data-draw-line` attribute to any element you want to underline:
 
 ```html
 <h1>
@@ -50,7 +140,12 @@ import 'modus-underline-js/dist/underline.css';
 </h1>
 ```
 
-**That's it!** The inner span is automatically generated. No need to add `data-draw-line-box` manually.
+**That's it!** The library automatically:
+- Injects SVG symbols into the DOM
+- Creates the inner span element (`data-draw-line-box`)
+- Initializes all underline functionality
+
+No manual setup required!
 
 ## Triggers
 
@@ -207,7 +302,7 @@ Here's a complete example showcasing multiple features:
 Customize SVG path and container selector:
 
 ```javascript
-import { initRandomUnderlines } from 'modus-underline';
+import { initRandomUnderlines } from 'modus-underline-js';
 
 // Use custom SVG file from URL (optional)
 initRandomUnderlines({

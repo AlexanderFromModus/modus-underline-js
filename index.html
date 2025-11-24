@@ -20,6 +20,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Install</a></li>
                 <li><a href="#hover-demo">Hover</a></li>
                 <li><a href="#scroll-demo">Scroll</a></li>
                 <li><a href="#click-demo">Click</a></li>
@@ -206,6 +207,81 @@
                 when scrolled into view. This one <b data-draw-line data-triggers="scroll" data-scroll-clear="true">clears</b> when you 
                 scroll it out of view, creating a <b data-draw-line data-triggers="scroll" data-scroll-clear="true">dynamic</b> 
                 reveal effect.
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="section" id="installation">
+        <div class="container-custom">
+            <div class="section-header">
+                <div class="section-label">Installation</div>
+                <h2 class="section-title">Get the library</h2>
+                <p class="section-description">Choose your preferred installation method.</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- npm -->
+                <div style="margin-bottom: 50px;">
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">npm</h3>
+                    <div class="code-example-wrapper">
+                        <button class="copy-button" onclick="copyCode(this, 'install-npm')">Copy</button>
+                        <div class="code-example">
+                            <pre><code class="language-bash" id="install-npm">npm install modus-underline-js</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- yarn -->
+                <div style="margin-bottom: 50px;">
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">yarn</h3>
+                    <div class="code-example-wrapper">
+                        <button class="copy-button" onclick="copyCode(this, 'install-yarn')">Copy</button>
+                        <div class="code-example">
+                            <pre><code class="language-bash" id="install-yarn">yarn add modus-underline-js</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pnpm -->
+                <div style="margin-bottom: 50px;">
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">pnpm</h3>
+                    <div class="code-example-wrapper">
+                        <button class="copy-button" onclick="copyCode(this, 'install-pnpm')">Copy</button>
+                        <div class="code-example">
+                            <pre><code class="language-bash" id="install-pnpm">pnpm add modus-underline-js</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CDN -->
+                <div style="margin-bottom: 50px;">
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">CDN (No Build Step)</h3>
+                    <div class="code-example-wrapper">
+                        <button class="copy-button" onclick="copyCode(this, 'install-cdn')">Copy</button>
+                        <div class="code-example">
+                            <pre><code class="language-html" id="install-cdn">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/modus-underline-js@latest/dist/underline.css"&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script src="https://unpkg.com/modus-underline-js@latest/dist/underline.js"&gt;&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ES Modules -->
+                <div>
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">ES Modules</h3>
+                    <div class="code-example-wrapper">
+                        <button class="copy-button" onclick="copyCode(this, 'install-esm')">Copy</button>
+                        <div class="code-example">
+                            <pre><code class="language-javascript" id="install-esm">import { initRandomUnderlines } from 'modus-underline-js';
+import 'modus-underline-js/dist/underline.css';
+
+initRandomUnderlines();</code></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
