@@ -1,6 +1,6 @@
 {
   "name": "modus-underline-js",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Animated SVG underline library with multiple trigger options (hover, scroll, click, focus, load)",
   "main": "dist/underline.js",
   "style": "dist/underline.css",

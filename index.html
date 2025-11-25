@@ -419,9 +419,36 @@ initRandomUnderlines();</code></pre>
                     </div>
                 </div>
 
+                <!-- Manual Trigger -->
+                <div style="margin-bottom: 50px;">
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">7. Manual Trigger (JavaScript API)</h3>
+                    <div class="example-demo">
+                        <div class="example-demo-title">Live Example:</div>
+                        <div>
+                            <button id="manual-trigger-btn" style="background: rgba(48, 255, 141, 0.1); border: 1px solid rgba(48, 255, 141, 0.3); color: #30FF8D; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-family: 'Besley', serif; font-weight: 600; margin-bottom: 15px;">Click to Trigger Underline</button>
+                            <div>
+                                This word will be <b data-draw-line id="manual-target">underlined</b> when you click the button above.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-example-wrapper">
+                        <button class="copy-button" onclick="copyCode(this, 'code-7')">Copy</button>
+                        <div class="code-example">
+                            <pre><code class="language-html" id="code-7">&lt;button id="trigger-btn"&gt;Trigger Underline&lt;/button&gt;
+&lt;p&gt;This word will be &lt;b data-draw-line id="target-word"&gt;underlined&lt;/b&gt; when clicked.&lt;/p&gt;
+
+&lt;script&gt;
+  document.getElementById('trigger-btn').addEventListener('click', () => {
+    ModusUnderline.triggerUnderline('#target-word');
+  });
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- JavaScript API -->
                 <div style="margin-bottom: 50px;">
-                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">7. JavaScript API (Optional)</h3>
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">8. JavaScript API (Optional)</h3>
                     <div class="code-example-wrapper">
                         <button class="copy-button" onclick="copyCode(this, 'code-7')">Copy</button>
                         <div class="code-example">
@@ -440,7 +467,7 @@ initRandomUnderlines();</code></pre>
 
                 <!-- CSS Customization -->
                 <div>
-                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">8. CSS Customization</h3>
+                    <h3 style="font-size: 1.3rem; color: #30FF8D; margin-bottom: 1rem; font-weight: 600;">9. CSS Customization</h3>
                     <div class="code-example-wrapper">
                         <button class="copy-button" onclick="copyCode(this, 'code-8')">Copy</button>
                         <div class="code-example">
@@ -564,6 +591,16 @@ initRandomUnderlines();</code></pre>
                 }
             });
         });
+        
+        // Manual trigger demo
+        const manualTriggerBtn = document.getElementById('manual-trigger-btn');
+        if (manualTriggerBtn) {
+            manualTriggerBtn.addEventListener('click', () => {
+                if (window.ModusUnderline) {
+                    window.ModusUnderline.triggerUnderline('#manual-target');
+                }
+            });
+        }
     </script>
 </body>
 </html>

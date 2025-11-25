@@ -249,6 +249,43 @@ Combine multiple triggers for flexible interactions:
 <b data-draw-line data-triggers="scroll,focus" tabindex="0">scroll or focus</b>
 ```
 
+### Manual Trigger (JavaScript API)
+
+Programmatically trigger underlines from JavaScript:
+
+```html
+<!-- HTML -->
+<button id="trigger-btn">Trigger Underline</button>
+<p>This word will be <b data-draw-line id="target-word">underlined</b> when you click the button.</p>
+
+<script>
+  // After initialization, trigger manually
+  document.getElementById('trigger-btn').addEventListener('click', () => {
+    ModusUnderline.triggerUnderline('#target-word');
+  });
+</script>
+```
+
+**Using ES Modules:**
+```javascript
+import { triggerUnderline, clearUnderline } from 'modus-underline-js';
+
+// Trigger with animation (default)
+triggerUnderline('#target-word');
+
+// Trigger without animation
+triggerUnderline('#target-word', { animate: false });
+
+// Clear underline
+clearUnderline('#target-word');
+```
+
+**API:**
+- `triggerUnderline(selector, options)` - Trigger underline on an element
+  - `selector`: CSS selector string or DOM element
+  - `options.animate`: Boolean (default: `true`) - Whether to animate
+- `clearUnderline(selector)` - Clear underline from an element
+
 ## Complete Example
 
 Here's a complete example showcasing multiple features:

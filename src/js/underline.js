@@ -74,6 +74,9 @@ async function loadSymbolLibrary(svgPath = null, containerSelector = '.symbol-li
   }
 }
 
+// Store initialized elements and their context for manual triggering
+const initializedElements = new Map();
+
 /**
  * Initialize random underlines
  * @param {Object} options - Configuration options
@@ -99,6 +102,7 @@ async function initRandomUnderlines(options = {}) {
   }
 
   let nextIndex = Math.floor(Math.random() * totalVariants); // Random start
+  const containerSelectorRef = containerSelector; // Store for manual triggers
 
   // Helper function to draw the underline
   function drawUnderline(container, shouldAnimate = true) {
@@ -107,7 +111,7 @@ async function initRandomUnderlines(options = {}) {
     if (!box) return;
 
     // Get the symbol and clone its path
-    const symbol = document.querySelector(`#underline-${nextIndex + 1}`);
+    const symbol = document.querySelector(`${containerSelectorRef} #underline-${nextIndex + 1}`);
     if (!symbol) return;
     
     const originalPath = symbol.querySelector("path");
@@ -189,6 +193,14 @@ async function initRandomUnderlines(options = {}) {
 
   // Process each element with data-draw-line
   document.querySelectorAll("[data-draw-line]").forEach((container) => {
+    // Store element reference and wrapper function for manual triggering
+    initializedElements.set(container, { 
+      drawUnderline: (shouldAnimate = true) => drawUnderline(container, shouldAnimate),
+      clearUnderline: () => {
+        const box = container.querySelector("[data-draw-line-box]");
+        if (box) box.innerHTML = "";
+      }
+    });
     // Auto-generate the inner span if it doesn't exist
     let box = container.querySelector("[data-draw-line-box]");
     if (!box) {
@@ -312,9 +324,97 @@ async function initRandomUnderlines(options = {}) {
   setTimeout(executeLoadTriggers, 100);
 }
 
+/**
+ * Manually trigger underline animation on an element
+ * @param {string|HTMLElement} selector - CSS selector or DOM element with data-draw-line attribute
+ * @param {Object} options - Options for triggering
+ * @param {boolean} options.animate - Whether to animate (default: true)
+ * @returns {boolean} - Returns true if trigger was successful, false otherwise
+ */
+function triggerUnderline(selector, options = {}) {
+  const { animate = true } = options;
+  
+  // Get element if selector is a string, otherwise use directly
+  const element = typeof selector === 'string' 
+    ? document.querySelector(selector) 
+    : selector;
+  
+  if (!element) {
+    console.warn(`Element not found: ${selector}`);
+    return false;
+  }
+  
+  if (!element.hasAttribute('data-draw-line')) {
+    console.warn('Element must have data-draw-line attribute');
+    return false;
+  }
+  
+  // Check if element was initialized
+  const elementData = initializedElements.get(element);
+  if (!elementData) {
+    console.warn('Element not initialized. Make sure initRandomUnderlines() has been called.');
+    return false;
+  }
+  
+  // Trigger the underline
+  elementData.drawUnderline(animate);
+  return true;
+}
+
+/**
+ * Manually clear underline from an element
+ * @param {string|HTMLElement} selector - CSS selector or DOM element with data-draw-line attribute
+ * @returns {boolean} - Returns true if clear was successful, false otherwise
+ */
+function clearUnderlineManual(selector) {
+  // Get element if selector is a string, otherwise use directly
+  const element = typeof selector === 'string' 
+    ? document.querySelector(selector) 
+    : selector;
+  
+  if (!element) {
+    console.warn(`Element not found: ${selector}`);
+    return false;
+  }
+  
+  if (!element.hasAttribute('data-draw-line')) {
+    console.warn('Element must have data-draw-line attribute');
+    return false;
+  }
+  
+  // Check if element was initialized
+  const elementData = initializedElements.get(element);
+  if (!elementData) {
+    console.warn('Element not initialized. Make sure initRandomUnderlines() has been called.');
+    return false;
+  }
+  
+  // Clear the underline
+  const box = element.querySelector("[data-draw-line-box]");
+  if (box) {
+    box.innerHTML = "";
+  }
+  return true;
+}
+
 // Export for module systems
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { initRandomUnderlines, loadSymbolLibrary };
+  module.exports = { 
+    initRandomUnderlines, 
+    loadSymbolLibrary,
+    triggerUnderline,
+    clearUnderlineManual
+  };
+}
+
+// Make functions available globally for script tag usage
+if (typeof window !== 'undefined') {
+  window.ModusUnderline = {
+    initRandomUnderlines,
+    loadSymbolLibrary,
+    triggerUnderline,
+    clearUnderline: clearUnderlineManual
+  };
 }
 
 // Auto-initialize if script is loaded directly (not as module)
